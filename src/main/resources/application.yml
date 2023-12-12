@@ -91,3 +91,5 @@ logging:
 #wx:
 #  app-id: 微信小程序APPID
 #  app-secret: 微信小程序密钥
+
+# http://localhost:8080/emos-wx-api/swagger-ui.html
