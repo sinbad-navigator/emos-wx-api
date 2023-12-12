@@ -1,0 +1,93 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    threads:
+      max: 200
+      min-spare: 30
+    connection-timeout: 5000ms
+  port: 8080
+  servlet:
+    context-path: /emos-wx-api
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/emos?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+      username: root
+      password: root
+      initial-size: 8
+      max-active: 16
+      min-idle: 8
+      max-wait: 60000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 1000
+        max-wait: -1ms
+        max-idle: 16
+        min-idle: 8
+
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: emos
+      authentication-database: admin
+      username:
+      password:
+  mail:
+    default-encoding: UTF-8
+    host: smtp.aliyun.com
+    username: yangdi525@aliyun.com
+    password: ax105105
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.example.emos.wx.db.pojo
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+#logging:
+#  level:
+#    root: info
+#    com.example.emos.wx.db.dao : warn
+#  pattern:
+#    console: "%d{HH:mm:ss}  %-5level  %msg%n"
+
+
+
+
+#emos:
+#  jwt:
+#    secret: abc123456
+#    expire: 5
+#    cache-expire: 10
+#  face:
+#    createFaceModelUrl: http://CentOS的IP地址:3000/create_face_model
+#    checkinUrl: http://CentOS的IP地址:3000/checkin
+#  email:
+#    system: 邮箱地址1
+#    hr: 邮箱地址2
+#  image-folder: D:/emos/image
+#  code: HelloWorld
+#  recieveNotify: http://PC电脑的IP地址:8080/emos-wx-api/meeting/recieveNotify
+#workflow:
+#  url: http://CentOS的IP地址:9090/emos-workflow
+#
+#trtc:
+#  appid: TRTC的APPID
+#  key: TRTC的密钥
+#  expire: 86400
+#wx:
+#  app-id: 微信小程序APPID
+#  app-secret: 微信小程序密钥
