@@ -12,7 +12,7 @@ public class R extends HashMap<String, Object> {
         put("msg", "success");
     }
 
-    //重写put()  ---》目的是为了可以形成链式调用
+    //重写put()  ---》目的是为了可以形成链式调用，调用完put,还可以继续调用put,形成链式调用
     public R put(String key, Object value) {
         super.put(key, value);
         return this;

@@ -29,5 +29,4 @@ public class EmosException extends RuntimeException {
         this.code = code;
     }
 
-
 }
