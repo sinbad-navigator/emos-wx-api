@@ -64,14 +64,14 @@ logging:
   pattern:
     console: "%d{HH:mm:ss}  %-5level  %msg%n"
 
-
-
-
-#emos:
-#  jwt:
-#    secret: abc123456
-#    expire: 5
-#    cache-expire: 10
+emos:
+  jwt:
+    # 密钥
+    secret: abc123456
+    # 令牌的过期时间（天）
+    expire: 5
+    # 令牌缓存时间（天）
+    cache-expire: 10
 #  face:
 #    createFaceModelUrl: http://CentOS的IP地址:3000/create_face_model
 #    checkinUrl: http://CentOS的IP地址:3000/checkin
