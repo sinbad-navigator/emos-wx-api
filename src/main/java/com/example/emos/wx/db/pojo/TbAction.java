@@ -4,16 +4,35 @@ import java.io.Serializable;
 import lombok.Data;
 
 /**
- * 行为表
- * tb_action
+ * sys_config
+ * @author 
  */
 @Data
 public class TbAction implements Serializable {
+    /**
+     * 主键
+     */
     private Integer id;
 
-    private String actionCode;
+    /**
+     * 参数名
+     */
+    private String paramKey;
 
-    private String actionName;
+    /**
+     * 参数值
+     */
+    private String paramValue;
+
+    /**
+     * 状态
+     */
+    private Boolean status;
+
+    /**
+     * 备注
+     */
+    private String remark;
 
     private static final long serialVersionUID = 1L;
 }

@@ -130,7 +130,6 @@ public class OAuth2Filter extends AuthenticatingFilter {
         resp.setHeader("Access-Control-Allow-Credentials", "true");
         resp.setHeader("Access-Control-Allow-Origin", req.getHeader("Origin"));
         super.doFilterInternal(request, response, chain);
-
     }
 
     // 从请求头里面去获取token令牌，如果为null,尝试从请求体里面获取token

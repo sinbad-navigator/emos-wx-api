@@ -88,8 +88,8 @@ emos:
 #  appid: TRTC的APPID
 #  key: TRTC的密钥
 #  expire: 86400
-#wx:
-#  app-id: 微信小程序APPID
-#  app-secret: 微信小程序密钥
+wx:
+  app-id: wx9d1c517e9ae4c8df
+  app-secret: 340c95cd157567dfd1a3bd0478e8f8e4
 
 # http://localhost:8080/emos-wx-api/swagger-ui.html

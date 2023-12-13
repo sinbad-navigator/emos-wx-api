@@ -4,16 +4,35 @@ import java.io.Serializable;
 import lombok.Data;
 
 /**
- * 模块资源表
- * tb_module
+ * sys_config
+ * @author 
  */
 @Data
 public class TbModule implements Serializable {
+    /**
+     * 主键
+     */
     private Integer id;
 
-    private String moduleCode;
+    /**
+     * 参数名
+     */
+    private String paramKey;
 
-    private String moduleName;
+    /**
+     * 参数值
+     */
+    private String paramValue;
+
+    /**
+     * 状态
+     */
+    private Boolean status;
+
+    /**
+     * 备注
+     */
+    private String remark;
 
     private static final long serialVersionUID = 1L;
 }

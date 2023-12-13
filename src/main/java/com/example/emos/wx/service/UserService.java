@@ -1,21 +1,30 @@
 package com.example.emos.wx.service;
 
 import com.example.emos.wx.db.pojo.TbUser;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
-@Service
-public class UserService {
+public interface UserService {
+    public int registerUser(String registerCode,String code,String nickname,String photo);
 
-    //TODO
-    public Set<String> searchUserPermissions(int userId) {
-        return null;
-    }
+    public Set<String> searchUserPermissions(int userId);
 
-    public TbUser searchById(int userId) {
+    public Integer login(String code);
 
-        return null;
-    }
+    public TbUser searchById(int userId);
+
+    public String searchUserHiredate(int userId);
+
+    public HashMap searchUserSummary(int userId);
+
+    public ArrayList<HashMap> searchUserGroupByDept(String keyword);
+
+    public ArrayList<HashMap> searchMembers(List param);
+
+    public List<HashMap> selectUserPhotoAndName(List param);
+
+    public String searchMemberEmail(int id);
 }

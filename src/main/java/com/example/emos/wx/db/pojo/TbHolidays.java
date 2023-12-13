@@ -5,13 +5,19 @@ import java.util.Date;
 import lombok.Data;
 
 /**
- * 节假日表
  * tb_holidays
+ * @author 
  */
 @Data
 public class TbHolidays implements Serializable {
+    /**
+     * 主键
+     */
     private Integer id;
 
+    /**
+     * 日期
+     */
     private Date date;
 
     private static final long serialVersionUID = 1L;
