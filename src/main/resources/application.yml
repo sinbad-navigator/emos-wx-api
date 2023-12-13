@@ -89,7 +89,7 @@ emos:
 #  key: TRTC的密钥
 #  expire: 86400
 wx:
-  app-id: wx9d1c517e9ae4c8df
-  app-secret: 340c95cd157567dfd1a3bd0478e8f8e4
+  app-id:
+  app-secret:
 
 # http://localhost:8080/emos-wx-api/swagger-ui.html
