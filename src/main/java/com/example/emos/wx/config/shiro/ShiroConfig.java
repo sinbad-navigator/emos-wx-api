@@ -13,27 +13,27 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-@Configuration //@Configuration 注解用于标记一个类为配置类，其中的方法可以用于声明和配置 Spring 应用程序中的 bean。通过 @Configuration 注解，Spring 容器能够识别配置类并正确加载和解析其中的 bean 定义。
+@Configuration
 public class ShiroConfig {
 
-    @Bean("securityManager") // 用于封装Realm对象 Bean注解表示这个对象是要返回给springboot的,是自动执行的
-    public SecurityManager securityManager(OAuth2Realm realm) {
-        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+    @Bean("securityManager")
+    public SecurityManager securityManager(OAuth2Realm realm){
+        DefaultWebSecurityManager securityManager=new DefaultWebSecurityManager();
         securityManager.setRealm(realm);
         securityManager.setRememberMeManager(null);
         return securityManager;
     }
 
-    @Bean("shiroFilter") // 用于封装Filter对象，设置Filter拦截路径
-    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager, OAuth2Filter filter) {
-        ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
+    @Bean("shiroFilter")
+    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager,OAuth2Filter filter){
+        ShiroFilterFactoryBean shiroFilter=new ShiroFilterFactoryBean();
         shiroFilter.setSecurityManager(securityManager);
 
-        Map<String, Filter> map = new HashMap<>();
-        map.put("oauth2", filter);
+        Map<String , Filter> map=new HashMap<>();
+        map.put("oauth2",filter);
         shiroFilter.setFilters(map);
-        // 除了这些路径的请求，其他的需要被拦截
-        Map<String, String> filterMap = new LinkedHashMap<>();
+        // 除了下面这些路径会放行外，其他的路径都需要被shiro拦截，进行认证授权处理
+        Map<String,String> filterMap=new LinkedHashMap<>();
         filterMap.put("/webjars/**", "anon");
         filterMap.put("/druid/**", "anon");
         filterMap.put("/app/**", "anon");
@@ -55,14 +55,14 @@ public class ShiroConfig {
 
     }
 
-    @Bean("lifecycleBeanPostProcessor")// 管理Shiro对象声明周期
-    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+    @Bean("lifecycleBeanPostProcessor")
+    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor(){
         return new LifecycleBeanPostProcessor();
     }
 
-    @Bean // AOP切换类，web方法执行前，验证权限
-    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
-        AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager){
+        AuthorizationAttributeSourceAdvisor advisor=new AuthorizationAttributeSourceAdvisor();
         advisor.setSecurityManager(securityManager);
         return advisor;
     }

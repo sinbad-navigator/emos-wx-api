@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Set;
 
-
 @Component
 public class OAuth2Realm extends AuthorizingRealm {
     @Autowired
@@ -31,7 +30,6 @@ public class OAuth2Realm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection collection) {
-        // 查询用户的权限列表 把权限列表添加到info对象中
         TbUser user= (TbUser) collection.getPrimaryPrincipal();
         int userId=user.getId();
         Set<String> permsSet=userService.searchUserPermissions(userId);
@@ -45,7 +43,7 @@ public class OAuth2Realm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        // 从令牌中获取userId, 然后检测该账户是否被冻结 ； 往info对象中添加用户信息，token字符串
+        //从令牌中获取userId,然后检测该用户是否被冻结
         String accessToken=(String)token.getPrincipal();
         int userId=jwtUtil.getUserId(accessToken);
         TbUser user=userService.searchById(userId);
@@ -53,6 +51,7 @@ public class OAuth2Realm extends AuthorizingRealm {
         if(user==null){
             throw new LockedAccountException("账号已被锁定,请联系管理员");
         }
+        // 往info对象中添加用户信息，token字符串
         SimpleAuthenticationInfo info=new SimpleAuthenticationInfo(user,accessToken,getName());
         return info;
     }

@@ -9,18 +9,18 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Aspect // 声明切面的注解
-@Component //用于将一个类标记为一个组件，并将其纳入 Spring 的管理范围
+@Aspect
+@Component
 public class TokenAspect {
     @Autowired
     private ThreadLocalToken threadLocalToken;
 
-    @Pointcut("execution(public * com.example.emos.wx.controller.*.*(..))") //所有controller包下的所有类都要被这个aop拦截
+    @Pointcut("execution(public * com.example.emos.wx.controller.*.*(..))")
     public void aspect(){
 
     }
 
-    @Around("aspect()") //声明AOP的环绕事件
+    @Around("aspect()")
     public Object around(ProceedingJoinPoint point) throws Throwable{
         R r=(R)point.proceed();
         String token=threadLocalToken.getToken();

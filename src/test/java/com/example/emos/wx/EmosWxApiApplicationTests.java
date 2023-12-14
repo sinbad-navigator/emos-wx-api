@@ -2,6 +2,9 @@ package com.example.emos.wx;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
+import com.example.emos.wx.db.pojo.MessageEntity;
+import com.example.emos.wx.db.pojo.MessageRefEntity;
+import com.example.emos.wx.db.pojo.TbMeeting;
 import com.example.emos.wx.service.MeetingService;
 import com.example.emos.wx.service.MessageService;
 import org.junit.jupiter.api.Test;

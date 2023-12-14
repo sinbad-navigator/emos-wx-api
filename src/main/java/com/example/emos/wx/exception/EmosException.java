@@ -5,10 +5,10 @@ import lombok.Data;
 @Data
 public class EmosException extends RuntimeException {
     private String msg;
-    private int code;
+    private int code = 500;
 
     public EmosException(String msg) {
-        super(msg); //调用父类 RuntimeException 的构造函数
+        super(msg);
         this.msg = msg;
     }
 
@@ -24,9 +24,8 @@ public class EmosException extends RuntimeException {
     }
 
     public EmosException(String msg, int code, Throwable e) {
-        super(msg);
+        super(msg, e);
         this.msg = msg;
         this.code = code;
     }
-
 }

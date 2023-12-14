@@ -19,11 +19,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.ArrayList;
 import java.util.List;
 
-@Configuration //加上这个注解，springboot才能得到这些配置信息
+@Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-
-    @Bean //加上这个注解表示，这个方法返回的对象是要给springboot的
+    @Bean
     public Docket createRestApi() {
         Docket docket = new Docket(DocumentationType.SWAGGER_2);
         ApiInfoBuilder builder = new ApiInfoBuilder();
@@ -32,28 +31,24 @@ public class SwaggerConfig {
         docket.apiInfo(info);
 
         ApiSelectorBuilder selectorBuilder = docket.select();
-        //设置什么包下的什么类什么方法要添加要到swagger里面
-        selectorBuilder.paths(PathSelectors.any()); //设置所有包下的所有类
-        selectorBuilder.apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class)); //添加了ApiOperation注解的方法 将添加到swagger
+        selectorBuilder.paths(PathSelectors.any());
+        selectorBuilder.apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class));
         docket = selectorBuilder.build();
 
-        //让swagger支持jwt
-        ApiKey apiKey = new ApiKey("token", "token", "token");
-        //把apikey分装在list里面交给docket
+        ApiKey apiKey = new ApiKey("token", "token", "header");
         List<ApiKey> apiKeyList = new ArrayList<>();
         apiKeyList.add(apiKey);
         docket.securitySchemes(apiKeyList);
 
-        //设置令牌的作用域 设置为全局
-        AuthorizationScope scope = new AuthorizationScope("global","accessEverything");
+        AuthorizationScope scope = new AuthorizationScope("global", "accessEverything");
         AuthorizationScope[] scopes = {scope};
-        SecurityReference reference = new SecurityReference("token",scopes);
+        SecurityReference reference = new SecurityReference("token", scopes);
         List refList = new ArrayList();
         refList.add(reference);
         SecurityContext context = SecurityContext.builder().securityReferences(refList).build();
-        List ctxList = new ArrayList();
-        ctxList.add(context);
-        docket.securityContexts(ctxList);
+        List cxtList = new ArrayList();
+        cxtList.add(context);
+        docket.securityContexts(cxtList);
 
         return docket;
     }

@@ -7,12 +7,11 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
-@ApiModel //表示这个类最终要显示到swagger
+@ApiModel
 @Data
 public class TestSayHelloForm {
     @NotBlank
-    @Pattern(regexp = "^[\\u4e00-\\u9fa5]{2,15}$") //匹配以 2 到 15 个连续的汉字组成的字符串
+    @Pattern(regexp = "^[\\u4e00-\\u9fa5]{2,15}$",message = "不符合正则表达式")
     @ApiModelProperty("姓名")
     private String name;
-
 }
